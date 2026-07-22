@@ -1,6 +1,6 @@
 # Smart Crop Management System🌱
 
-Amart crop Management System is a modern, intelligence-driven web application that provides precise pesticide and dosage recommendations based on specific agricultural parameters. Built with a React frontend and a Python Flask backend.
+Smart crop Management System is a modern, intelligence-driven web application that provides precise pesticide and dosage recommendations based on specific agricultural parameters. Built with a React frontend and a Python Flask backend.
 
 ## Features
 - **Intelligent Analysis**: Recommends the optimal pesticide compound and application dosage by evaluating four mathematical constraints: Target Crop, Identified Pest, Soil Composition, and Local Temperature.
