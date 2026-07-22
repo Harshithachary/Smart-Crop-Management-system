@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Pesticide Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            padding: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 10px;
+            display: block;
+            text-align: left;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        pre {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            max-width: 500px;
+            margin: 30px auto;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Crop Pesticide Predictor</h1>
+    <form id="predictForm">
+        <label for="crop">Crop:</label>
+        <input type="text" id="crop" name="crop" required placeholder="Enter crop name" />
+
+        <label for="pest">Pest:</label>
+        <input type="text" id="pest" name="pest" required placeholder="Enter pest name" />
+
+        <label for="soil">Soil Type:</label>
+        <input type="text" id="soil" name="soil" placeholder="Enter soil type" />
+
+        <label for="temperature">Temperature (°C):</label>
+        <input type="number" id="temperature" name="temperature" required placeholder="Enter temperature" />
+
+        <label for="humidity">Humidity (%):</label>
+        <input type="number" id="humidity" name="humidity" required placeholder="Enter humidity" />
+
+        <button type="submit">Predict</button>
+    </form>
+
+    <pre id="result"></pre>
+
+    <script>
+        document.getElementById('predictForm').onsubmit = async function (e) {
+            e.preventDefault();
+            const form = e.target;
+            const data = {
+                crop: form.crop.value,
+                pest: form.pest.value,
+                soil: form.soil.value,
+                weather: {
+                    temperature: Number(form.temperature.value),
+                    humidity: Number(form.humidity.value)
+                }
+            };
+
+            const response = await fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+            document.getElementById('result').textContent = JSON.stringify(result, null, 2);
+        };
+    </script>
+</body>
+</html>
