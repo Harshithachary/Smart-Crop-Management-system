@@ -33,5 +33,3 @@ npm start
 ```
 *The React development server will start on `http://localhost:3000` and automatically proxy API requests to the Python backend.*
 
-## Author
-- **Neha Reddy** - [@imnehareddy](https://github.com/imnehareddy)
